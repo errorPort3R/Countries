@@ -1,14 +1,15 @@
 package com.theironyard.javawithclojure.jhporter;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import jodd.json.JsonSerializer;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
 
+    //parse file
     public static ArrayList<Country> parseCountries(String filename) throws FileNotFoundException {
         ArrayList<Country> countries = new ArrayList<>();
         File f = new File(filename);
@@ -23,6 +24,7 @@ public class Main {
         return countries;
     }
 
+    //load file into hashmap
     public static HashMap<String, ArrayList<Country>> loadCountriesIntoMap (ArrayList<Country> countries)
     {
         HashMap<String, ArrayList<Country>> countryMap = new HashMap<>();
@@ -39,8 +41,29 @@ public class Main {
         return countryMap;
     }
 
+    //select save method
+    public static void saveFile(String newFileName, ArrayList<Country>chosenCountries, String letterChoice)
+    {
+        Scanner input = new Scanner(System.in);
+        System.out.printf("\nWould you rather save this as a pipe-separated file, or a json file?\n1. pipe-separated\n2. JSON\n");
+        String choice = input.nextLine();
 
-    public static void saveFile(String fileLoc,  ArrayList<Country> countryList, String Letter)
+        switch (choice)
+        {
+            case "1":
+                manualSaveFile(newFileName, chosenCountries, letterChoice);
+                break;
+            case "2":
+            jsonSaveFile(newFileName, chosenCountries, letterChoice);
+                break;
+            default:
+                System.out.printf("\nNot a valid selection!");
+                saveFile(newFileName, chosenCountries, letterChoice);
+        }
+    }
+
+    //save file as pipe-separated values
+    public static void manualSaveFile(String fileLoc,  ArrayList<Country> countryList, String Letter)
     {
         try
         {
@@ -50,6 +73,7 @@ public class Main {
                 output.printf("%s|%s\n", countryList.get(i).getInitials(), countryList.get(i).getCountryName());
             }
             output.close();
+            System.out.printf("\nSaving to %s.", fileLoc);
         }
         catch(Exception e)
         {
@@ -58,6 +82,25 @@ public class Main {
 
     }
 
+    //save as json file
+    public static void jsonSaveFile(String fileLoc,  ArrayList<Country> countryList, String Letter)
+    {
+        JsonSerializer serializer = new JsonSerializer();
+        String json = serializer.include("*").serialize(countryList);
+        File f = new File(fileLoc);
+        try
+        {
+            FileWriter fw = new FileWriter(f);
+            fw.write(json);
+            fw.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    //get user input
     public static String getUserLetter()
     {
         String letter;
@@ -75,15 +118,12 @@ public class Main {
         }
     }
 
-
-
     public static void main(String[] args) throws FileNotFoundException {
 	    //declare variables
         HashMap<String, ArrayList<Country>> countryMap;
         String letterChoice;
         String newFileName;
         ArrayList<Country> chosenCountries;
-
 
         //   read/parse file
         countryMap = loadCountriesIntoMap(parseCountries("countries.txt"));
@@ -95,8 +135,6 @@ public class Main {
         chosenCountries = countryMap.get(letterChoice);
 
         //save file
-        System.out.printf("\nSaving to %s.", newFileName);
         saveFile(newFileName, chosenCountries, letterChoice);
-
     }
 }
