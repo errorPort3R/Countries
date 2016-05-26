@@ -5,25 +5,25 @@ package com.theironyard.javawithclojure.jhporter;
  */
 public class Country
 {
-    private String startingInitial;
+    private String initials;
     private String countryName;
 
 
 
     public Country(String startingInitial, String countryName)
     {
-        this.startingInitial = startingInitial;
+        this.initials = startingInitial;
         this.countryName = countryName;
     }
 
-    public String getStartingInitial()
+    public String getInitials()
     {
-        return startingInitial;
+        return initials;
     }
 
-    public void setStartingInitial(String startingInitial)
+    public void setInitials(String startingInitial)
     {
-        this.startingInitial = startingInitial;
+        this.initials = startingInitial;
     }
 
     public String getCountryName()
