@@ -13,6 +13,8 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * Created by jeffryporter on 5/26/16.
+ * referenced some of the code we used in class(Java with Clojure taught by Zach Oakes, May2016 cohort) regarding json and file writing.
+ *
  */
 public class TestMain {
 
