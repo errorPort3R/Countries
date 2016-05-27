@@ -42,7 +42,7 @@ public class Main {
     }
 
     //select save method
-    public static void saveFile(String newFileName, ArrayList<Country>chosenCountries, String letterChoice)
+    public static void saveFile(String newFileName, ArrayList<Country>chosenCountries)
     {
         Scanner input = new Scanner(System.in);
         System.out.printf("\nWould you rather save this as a pipe-separated file, or a json file?\n1. pipe-separated\n2. JSON\n");
@@ -51,19 +51,19 @@ public class Main {
         switch (choice)
         {
             case "1":
-                manualSaveFile(newFileName, chosenCountries, letterChoice);
+                manualSaveFile(newFileName, chosenCountries);
                 break;
             case "2":
-            jsonSaveFile(newFileName, chosenCountries, letterChoice);
+            jsonSaveFile(newFileName, chosenCountries);
                 break;
             default:
                 System.out.printf("\nNot a valid selection!");
-                saveFile(newFileName, chosenCountries, letterChoice);
+                saveFile(newFileName, chosenCountries);
         }
     }
 
     //save file as pipe-separated values
-    public static void manualSaveFile(String fileLoc,  ArrayList<Country> countryList, String Letter)
+    public static void manualSaveFile(String fileLoc,  ArrayList<Country> countryList)
     {
         try
         {
@@ -83,7 +83,7 @@ public class Main {
     }
 
     //save as json file
-    public static void jsonSaveFile(String fileLoc,  ArrayList<Country> countryList, String Letter)
+    public static void jsonSaveFile(String fileLoc,  ArrayList<Country> countryList)
     {
         JsonSerializer serializer = new JsonSerializer();
         String json = serializer.include("*").serialize(countryList);
@@ -125,7 +125,7 @@ public class Main {
         String newFileName;
         ArrayList<Country> chosenCountries;
 
-        //   read/parse file
+        //read/parse file
         countryMap = loadCountriesIntoMap(parseCountries("countries.txt"));
 
         //get user input
@@ -135,6 +135,6 @@ public class Main {
         chosenCountries = countryMap.get(letterChoice);
 
         //save file
-        saveFile(newFileName, chosenCountries, letterChoice);
+        saveFile(newFileName, chosenCountries);
     }
 }

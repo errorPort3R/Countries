@@ -1,0 +1,55 @@
+GE|georgia
+DE|germany
+GH|ghana
+GI|gibraltar
+GR|greece
+GL|greenland
+GD|grenada
+GP|guadeloupe
+GU|guam
+GT|guatemala
+GN|guinea
+GW|guinea-bissau
+GY|guyana
+HT|haiti
+HM|heard island and mcdonald islands
+VA|holy see (vatican city state)
+HN|honduras
+HK|hong kong
+HU|hungary
+IS|iceland
+IN|india
+ID|indonesia
+IR|iran, islamic republic of
+IQ|iraq
+IE|ireland
+IL|israel
+IT|italy
+JM|jamaica
+JP|japan
+JO|jordan
+KZ|kazakstan
+KE|kenya
+KI|kiribati
+KP|korea, democratic people's republic of
+KR|korea, republic of
+KV|kosovo
+KW|kuwait
+KG|kyrgyzstan
+LA|lao people's democratic republic
+LV|latvia
+LB|lebanon
+LS|lesotho
+LR|liberia
+LY|libyan arab jamahiriya
+LI|liechtenstein
+LT|lithuania
+LU|luxembourg
+MO|macau
+MK|macedonia, the former yugoslav republic of
+MG|madagascar
+MW|malawi
+MY|malaysia
+MV|maldives
+ML|mali
+MT|malta

@@ -10,9 +10,9 @@ public class Country
 
 
 
-    public Country(String startingInitial, String countryName)
+    public Country(String initials, String countryName)
     {
-        this.initials = startingInitial;
+        this.initials = initials;
         this.countryName = countryName;
     }
 
